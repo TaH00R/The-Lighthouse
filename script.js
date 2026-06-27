@@ -667,3 +667,29 @@ const styleForMobile = `
 const mobileStyle = document.createElement('style');
 mobileStyle.textContent = styleForMobile;
 document.head.appendChild(mobileStyle);
+
+// Reservation form progress indicator
+const reservationForm = document.getElementById("reservationForm");
+const requiredFields = reservationForm.querySelectorAll("[required]");
+const progressBar = document.getElementById("progress-bar");
+const progressText = document.getElementById("progress-text");
+
+function updateFormProgress() {
+  let completed = 0;
+
+  requiredFields.forEach((field) => {
+    if (field.value.trim() !== "") {
+      completed++;
+    }
+  });
+
+  progressBar.value = completed;
+  progressText.textContent = `${completed} of ${requiredFields.length} fields completed`;
+}
+
+requiredFields.forEach((field) => {
+  field.addEventListener("input", updateFormProgress);
+  field.addEventListener("change", updateFormProgress);
+});
+
+updateFormProgress();
