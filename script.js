@@ -645,6 +645,16 @@ document.addEventListener('click', function (e) {
     });
   }
 });
+// Live character counter for customer review
+const reviewTextarea = document.getElementById("review-text");
+const reviewCharCounter = document.getElementById("review-char-counter");
+
+if (reviewTextarea && reviewCharCounter) {
+  reviewTextarea.addEventListener("input", () => {
+    reviewCharCounter.textContent =
+      `${reviewTextarea.value.length} / 500 characters`;
+  });
+}
 
 // ── Initialise ───
 document.addEventListener('DOMContentLoaded', function () {
