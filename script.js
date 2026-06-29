@@ -155,9 +155,6 @@ const savedTheme = localStorage.getItem("theme");
 
 if (savedTheme === "light") {
   document.body.classList.add("light-theme");
-  themeToggle.textContent = "☀️";
-} else {
-  themeToggle.textContent = "🌙";
 }
 
 themeToggle.addEventListener("click", () => {
@@ -167,10 +164,8 @@ themeToggle.addEventListener("click", () => {
 
   if (isLight) {
     localStorage.setItem("theme", "light");
-    themeToggle.textContent = "☀️";
   } else {
     localStorage.setItem("theme", "dark");
-    themeToggle.textContent = "🌙";
   }
 });
 
