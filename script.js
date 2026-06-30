@@ -570,6 +570,7 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.classList.toggle("active", isFavorite);
       btn.textContent = isFavorite ? "\u2665" : "\u2661";
     });
+  }
 
 // ─── Open / Closed Badge ────────────────────────────────────────────────────
 (function updateOpenStatusBadge() {
@@ -610,7 +611,49 @@ document.addEventListener("DOMContentLoaded", () => {
   setInterval(render, 60 * 1000);
 })();
 
+  setReservationDateRange();
+  updateAvailableTimes();
+  setupThemeToggle();
+  setupIntersectionObserver();
+  setupAutoScroll();
+  setupReviews();
+  setupOrderFeatures();
+  filterMenuItems();
+  handleScroll();
 
+  dateInput?.addEventListener("change", updateAvailableTimes);
+  navToggle?.addEventListener("click", toggleMobileMenu);
+  reservationForm?.addEventListener("submit", validateReservationForm);
+  window.addEventListener("scroll", handleScroll, { passive: true });
+  window.addEventListener("resize", () => {
+    if (window.innerWidth > 768) closeMobileMenu();
+  });
+
+  navLinks.forEach((link) => link.addEventListener("click", smoothScroll));
+  document.querySelectorAll(".nav-cta, .nav-cta-mobile, .hero-buttons a").forEach((link) => {
+    link.addEventListener("click", smoothScroll);
+  });
+
+  filterBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      filterBtns.forEach((item) => item.classList.remove("active"));
+      btn.classList.add("active");
+      currentCategory = btn.dataset.filter || "all";
+      filterMenuItems();
+    });
+  });
+
+  dietBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      dietBtns.forEach((item) => item.classList.remove("active"));
+      btn.classList.add("active");
+      currentDiet = btn.dataset.diet || "all";
+      filterMenuItems();
+    });
+  });
+
+  cuisineDropdown?.addEventListener("change", filterMenuItems);
+  menuSearch?.addEventListener("input", filterMenuItems);
 
   backToTopBtn?.addEventListener("click", () => {
     const prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
