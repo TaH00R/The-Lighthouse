@@ -1505,21 +1505,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   font-size: 0.9rem;
 }
 
-.footer-bottom-links {
-  display: flex;
-  gap: 24px;
-}
-
-.footer-bottom-links a {
-  color: var(--color-text-muted);
-  font-size: 0.9rem;
-  transition: color 0.3s ease;
-}
-
-.footer-bottom-links a:hover {
-  color: var(--color-primary);
-}
-
 /* RESPONSIVE */
 
 @media (max-width: 1024px) {
@@ -1543,11 +1528,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
   .footer-bottom {
     flex-direction: column;
     text-align: center;
-  }
-
-  .footer-bottom-links {
-    justify-content: center;
-    flex-wrap: wrap;
   }
 
   .footer-brand h2 {
