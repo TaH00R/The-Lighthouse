@@ -322,16 +322,30 @@ let currentDiet = "all";
 function filterMenuItems() {
   const menuItems = document.querySelectorAll('.menu-item');
   let visibleCount = 0;
-  const searchText = menuSearch ? menuSearch.value.toLowerCase() : "";
+  const searchText = menuSearch ? menuSearch.value.trim().toLowerCase() : "";
 
   menuItems.forEach((item) => {
-    const itemName = item.querySelector('h3')?.textContent.toLowerCase() || "";
+    const h3 = item.querySelector('h3');
+    const itemName = h3 ? h3.textContent.toLowerCase() : "";
     const category = item.dataset.category || "";
     const type = item.dataset.type || item.dataset.diet || "all";
 
     const matchesSearch = itemName.includes(searchText);
     const matchesFilter = currentCategory === 'all' || category === currentCategory;
     const matchesDiet = currentDiet === 'all' || type === currentDiet;
+
+    if (h3) {
+      if (!h3.dataset.original) {
+        h3.dataset.original = h3.innerHTML;
+      }
+      const originalText = h3.dataset.original;
+      if (searchText) {
+        const regex = new RegExp(`(${searchText})`, 'gi');
+        h3.innerHTML = originalText.replace(regex, '<span class="search-highlight">$1</span>');
+      } else {
+        h3.innerHTML = originalText;
+      }
+    }
 
     if (matchesSearch && matchesFilter && matchesDiet) {
       item.classList.remove('hidden-item');
@@ -1089,6 +1103,7 @@ document.addEventListener('DOMContentLoaded', () => {
   setupGiftCardCustomizer();
   setupVirtualSommelier();
   setupLoyaltyClub();
+  setupSearchSuggestions();
 
   if (typeof i18next !== 'undefined') {
     i18next
@@ -1773,4 +1788,21 @@ function addLoyaltyPoints(points, reason) {
   } catch (e) {
     console.error(e);
   }
+}
+
+// =============================================
+// Feature 10: Search Suggestions Handler
+// =============================================
+function setupSearchSuggestions() {
+  const chips = document.querySelectorAll(".suggestion-chip");
+  const searchInput = document.getElementById("menu-search");
+
+  if (!chips.length || !searchInput) return;
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      searchInput.value = chip.dataset.query;
+      searchInput.dispatchEvent(new Event("input"));
+    });
+  });
 }
