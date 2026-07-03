@@ -39,6 +39,8 @@ body.light-theme {
   }
 }
 
+
+
 body {
   font-family: var(--font-sans);
   background-color: var(--color-bg);
@@ -1832,6 +1834,9 @@ body.light-theme .time-slot-btn.limited .availability {
 .reservation-form .btn {
   margin-top: 20px;
 }
+#review-form .btn {
+  margin-top: 20px;
+}
 
 .form-note {
   text-align: center;
@@ -2000,7 +2005,7 @@ body.light-theme .time-slot-btn.limited .availability {
 
 .review-text {
   color: var(--color-text-muted);
-  font-size: 0.95rem;
+  font-size: 1.125rem;
   line-height: 1.75;
   flex: 1;
   word-break: break-word;
@@ -2031,7 +2036,7 @@ body.light-theme .time-slot-btn.limited .availability {
 
 .review-name {
   display: block;
-  font-size: 0.9rem;
+  font-size: 1.125rem;
   color: var(--color-text);
 }
 
@@ -2056,7 +2061,18 @@ body.light-theme .time-slot-btn.limited .availability {
   text-align: center;
   margin-bottom: 28px;
 }
-
+fieldset{
+  
+  border: none;
+  padding: 0;
+  margin: 0;
+}
+legend{
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
+}
 .star-input {
   display: flex;
   gap: 4px;
@@ -2066,7 +2082,7 @@ body.light-theme .time-slot-btn.limited .availability {
 .star-btn {
   background: none;
   border: none;
-  font-size: 1.75rem;
+  font-size: 2.25rem;
   color: var(--color-border);
   cursor: pointer;
   padding: 0;
@@ -2224,7 +2240,7 @@ body.light-theme .time-slot-btn.limited .availability {
   color: var(--color-text-muted);
   margin-bottom: 14px;
   transition: all 0.3s ease;
-  font-size: 0.95rem;
+  font-size: 1.125rem;
 }
 
 .footer-column a:hover {
@@ -2449,7 +2465,6 @@ body.light-theme .time-slot-btn.limited .availability {
 
   .btn {
     width: 100%;
-    max-width: 280px;
   }
 
   .form-row {
